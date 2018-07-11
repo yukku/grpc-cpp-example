@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package routeguide;
+
+service RouteGuide {
+    rpc GetNumber(Number) returns (Number) {}
+    rpc GetString(String) returns (String) {}
+    rpc GetFile(File) returns (File) {}
+}
+
+message Number {
+    int32 number = 1;
+}
+
+message String {
+    string string = 1;
+}
+
+message File {
+    int64 offset = 1;
+    bytes data = 2;
+}
