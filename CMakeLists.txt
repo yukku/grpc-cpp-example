@@ -1,5 +1,5 @@
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-set(CMAKE_MODULE_PATH ./cmake)
+set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
 project(grpc-cpp-example VERSION 0.1.0 LANGUAGES CXX)
@@ -15,13 +15,13 @@ message(STATUS "Using GRPC ${GRPC_VERSION}")
 
 # Generate grpc, cpp
 execute_process(COMMAND protoc
-    -I ./src --grpc_out=./src
+    -I ${CMAKE_CURRENT_SOURCE_DIR}/src --grpc_out=${CMAKE_CURRENT_SOURCE_DIR}/src
     --plugin=protoc-gen-grpc=/usr/local/bin/grpc_cpp_plugin
-    ./src/route_guide.proto)
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/route_guide.proto)
 
 execute_process(COMMAND protoc
-    -I ./src --cpp_out=./src
-    ./src/route_guide.proto)
+    -I ${CMAKE_CURRENT_SOURCE_DIR}/src --cpp_out=${CMAKE_CURRENT_SOURCE_DIR}/src
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/route_guide.proto)
 
 # Targets
 
